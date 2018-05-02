@@ -12,9 +12,9 @@ class Home():
 		msg = "家的面积是%d地址是%s价格是%d万户型是%s"%(self.area,self.address,self.price,self.hometype)
 		return msg 
 	
-	def addBed(self,bed):
+	def addBed(self,bed):#加床
 		#bed.area = bed.getArea
-		if self.area >= bed.getArea():
+		if self.area >= bed.getArea():#判断家的面积是否大于加的床的面积，如果大于等于就可以往家里里面加
 			self.jiaju.append(bed)
 			self.area-=bed.getArea()
 			print("加入成功")		
@@ -22,14 +22,14 @@ class Home():
 		else:
 			print("加入失败")
 
-	def addLight(self,light):
+	def addLight(self,light):#加灯
 		self.dengs.append(light)
 
 	def switch(self):
-		if self.dengs[0].getIsopen():
-			self.dengs[0].close()
+		if self.dengs[0].getIsopen():#获取灯是开着还是关着
+			self.dengs[0].close()#调用关着
 		else:
-			self.dengs[0].open()
+			self.dengs[0].open()#调用开着
 class Bed():
 	
 	def __init__(self,area,name):
@@ -53,11 +53,11 @@ class Light():
 		msg = "我叫%s灯"%self.name
 		return msg
 
-	def open(self):
+	def open(self):#开灯
 		self.isopen = True
 		print("灯亮了")
 
-	def close(self):
+	def close(self):#关灯
 		self.isopen = False
 		print("灯灭了")
 		
