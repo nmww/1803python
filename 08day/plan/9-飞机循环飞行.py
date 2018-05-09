@@ -16,7 +16,7 @@ hero = pygame.image.load("./images/hero.gif")
 screen.blit(hero,(180,500))
 
 
-
+#创建时钟对象
 clock = pygame.time.Clock()
 
 #创建英雄的rect
@@ -24,7 +24,7 @@ hero_rect = pygame.Rect(180,500,200,200)
 
 #创建敌机精灵
 enemy = GameSprite("./images/enemy1.png")
-enemy1 = GameSprite("./images/enemy1.png")
+enemy1 = GameSprite("./images/enemy1.png",3)
 enemy1.rect.x = 100
 #创建敌机精灵组
 enemy_group = pygame.sprite.Group(enemy,enemy1)
