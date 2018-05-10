@@ -41,9 +41,7 @@ class PlaneGame(object):
 				enemy = Enemy()
 				self.enemy_group.add(enemy)
 
-#1、随机x值 一定要有最大值 随机数
-#2、初始化速度  随机1-?
-#3、初始化y的位置
+
 
 	def __check_collide(self):
 		pass
