@@ -1,13 +1,10 @@
 import pygame
 import random
 SCREEN_RECT = pygame.Rect(0,0,480,700)
-
+#刷新帧率
 FRAME_PER_SEC = 60
-
-#创建敌机的定时器常量
+#敌机事件的常量
 CREATE_ENEMY_EVENT = pygame.USEREVENT
-
-HERO_FIRE_EVENT = pygame.USEREVENT + 1
 
 class GameSprite(pygame.sprite.Sprite):
 	def __init__(self,image_name,speed=1):
@@ -37,7 +34,14 @@ class Background(GameSprite):
 			self.rect.y = -self.rect.height
 
 
+class Enemy(GameSprite):
+	def __init__(self):
+		image_name = "./images/enemy-1.gif"
+		super().__init__(image_name)
 
+	def update(self):
+		super().update()
+			
 
 
 					

@@ -5,8 +5,13 @@ class PlaneGame(object):
 		self.screen = pygame.display.set_mode(SCREEN_RECT.size)	
 		self.clock = pygame.time.Clock()
 		self.__create_sprites()
-		
+		#定时器 毫秒
+		#第一个参数是事件的名字
+		#第二个参数是多长时间执行一次时间
+		pygame.time.set_timer(CREATE_ENEMY_EVENT,1000)
 
+		#敌机的精灵组
+		self.enemy_group = pygame.sprite.Group()
 
 	def __create_sprites(self):
 		bg1 = Background()
@@ -29,8 +34,16 @@ class PlaneGame(object):
 		# pass
 		
 		for event in pygame.event.get():
-			pass	
+		# 判断是否退出游戏
+			if event.type == pygame.QUIT:
+				PlaneGame.__game_over()
+			elif event.type == CREATE_ENEMY_EVENT:#定时器事件
+				enemy = Enemy()
+				self.enemy_group.add(enemy)
 
+#1、随机x值 一定要有最大值 随机数
+#2、初始化速度  随机1-?
+#3、初始化y的位置
 
 	def __check_collide(self):
 		pass
@@ -38,6 +51,10 @@ class PlaneGame(object):
 	def __update_sprites(self):
 		self.back_group.update()
 		self.back_group.draw(self.screen)
+
+
+		self.enemy_group.update()
+		self.enemy_group.draw(self.screen)
 
 		
 
