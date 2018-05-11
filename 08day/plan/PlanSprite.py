@@ -7,6 +7,12 @@ FRAME_PER_SEC = 60
 #敌机事件的常量
 CREATE_ENEMY_EVENT = pygame.USEREVENT
 
+#子弹事件常量
+CREATE_BULLET_EVENT = pygame.USEREVENT + 1
+
+
+
+
 class GameSprite(pygame.sprite.Sprite):
 	def __init__(self,image_name,speed=1):
 		super().__init__()
@@ -55,7 +61,59 @@ class Enemy(GameSprite):
 	def update(self):
 		super().update()
 			
+		if self.rect.y >= SCREEN_RECT.height:
+			self.kill()
+
+	def __del__(self):
+		pass
+
+class Hero(GameSprite):
+	def __init__(self):
+		image_name = "./images/hero.gif"
+		super().__init__(image_name,0)
+		self.speed1 = 0
+
+		self.rect.centerx = SCREEN_RECT.centerx	
+		self.rect.bottom = SCREEN_RECT.bottom - 120
+		
+		#子弹精灵族	
+
+		self.bullet_group = pygame.sprite.Group()
+	def update(self):
+		self.rect.x += self.speed
+		self.rect.y += self.speed1
 
 
-					
+		if self.rect.left < 0:
+			self.rect.left = 0
+
+		if self.rect.right > SCREEN_RECT.width:
+			self.rect.right = SCREEN_RECT.width	
+
+
+		
+
+	def fire(self):
+		bullet = Bullet()#子弹精灵组
+		bullet.rect.bottom = self.rect.y - 20
+		bullet.rect.centerx = self.rect.centerx
+
+		# 3. 将精灵添加到精灵组
+		self.bullet_group.add(bullet)
+
+#创建子弹精灵
+
+class Bullet(GameSprite):
+
+	def __init__(self):
+		image_name = "./images/bullet1.png"
+		super().__init__(image_name,-10)
+
+
+	def update(self):
+		super().update()
+		if self.rect.bottom < 0:
+			self.kill()
+
+
 		
