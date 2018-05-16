@@ -1,7 +1,6 @@
 def w1(fun):
 	def inner(*args,**kwargs):
 		print("-----验证----")
-		print(*args)
 		ret =  fun(*args,**kwargs)
 		return ret
 	return inner
@@ -12,8 +11,17 @@ def test(a,b):
 	print("a==%d b==%d"%(a,b))
 	return "hehehehe"
 @w1
-def test():
+def test1():
 	print("哈哈哈")
+@w1
+def test2(a,b):
+	print("呵呵呵")
+	
+@w1
+def test3():
+	return "嘎嘎嘎"
 
-test()
+test1()
+test2(1,2)
+print(test3())
 print(test(1,2))
