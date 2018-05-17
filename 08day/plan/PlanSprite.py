@@ -10,7 +10,17 @@ CREATE_ENEMY_EVENT = pygame.USEREVENT
 #子弹事件常量
 CREATE_BULLET_EVENT = pygame.USEREVENT + 1
 
-
+#爆炸销毁图片
+bg1 = pygame.image.load('./images/enemy0_down1.png')
+bg2 = pygame.image.load('./images/enemy0_down2.png')
+bg3 = pygame.image.load('./images/enemy0_down3.png')
+bg4= pygame.image.load('./images/enemy0_down4.png')
+enemy1_down_group = pygame.sprite.Group()
+enemy1_down_surface = []
+enemy1_down_surface.append(bg1)
+enemy1_down_surface.append(bg2)
+enemy1_down_surface.append(bg3)
+enemy1_down_surface.append(bg4)
 
 
 class GameSprite(pygame.sprite.Sprite):
@@ -57,6 +67,8 @@ class Enemy(GameSprite):
 		self.rect.x = random.randint(0,max_x)#随机位置
 
 		self.rect.bottom = 0
+
+		self.down_index = 0 #敌机销毁图片索引
 
 	def update(self):
 		super().update()
@@ -108,6 +120,18 @@ class Bullet(GameSprite):
 	def __init__(self):
 		image_name = "./images/bullet1.png"
 		super().__init__(image_name,-10)
+
+
+	def update(self):
+		super().update()
+		if self.rect.bottom < 0:
+			self.kill()
+
+class Soruce(pygame.sprite.Sprite):
+
+	def __init__(self):
+		super().__init__()
+		
 
 
 	def update(self):
