@@ -6,12 +6,21 @@ import os
 def test(arg):
 	for i in range(5):
 		time.sleep(1)
-		print("哈哈哈%s pid = %d"%(arg,os.getpid()))
+		print("老大%s pid = %d"%(arg,os.getpid()))
+
+def test1(arg):
+	for i in range(5):
+		time.sleep(1)
+		print("老二%s pid = %d"%(arg,os.getpid()))
 
 p = Process(target=test,args=("laowang",))
 p.start()
 
+
+p1 = Process(target=test1,args=("xiaowang",))
+p1.start()
 #time.sleep(5)
 
-p.join(3) #超时时间
+p.join() #超时时间
+p1.join()
 print("hehehehehei")
