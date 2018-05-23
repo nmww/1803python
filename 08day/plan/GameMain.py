@@ -90,6 +90,7 @@ class PlaneGame(object):
 
 	def __check_collide(self):
 		  # 1. 子弹摧毁敌机
+			#敌机精灵组在前 并返回敌机的精灵
 		enemy_down = pygame.sprite.groupcollide(self.enemy_group,self.hero.bullet_group, True, True)
 
 		enemy1_down_group.add(enemy_down)#加入到销毁组
@@ -125,9 +126,8 @@ class PlaneGame(object):
 		for enemy1_down in enemy1_down_group:
 			self.screen.blit(enemy1_down_surface[enemy1_down.down_index],enemy1_down.rect)
 			if self.count % 15 == 0:
-				if enemy1_down.down_index == 0:
-					enemy1_down.down_index += 1
-				else:
+				enemy1_down.down_index += 1
+				if enemy1_down.down_index == 3:
 					self.score +=5
 					enemy1_down_group.remove(enemy1_down)
 					print(self.score)

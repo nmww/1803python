@@ -15,7 +15,11 @@ bg1 = pygame.image.load('./images/enemy0_down1.png')
 bg2 = pygame.image.load('./images/enemy0_down2.png')
 bg3 = pygame.image.load('./images/enemy0_down3.png')
 bg4= pygame.image.load('./images/enemy0_down4.png')
+
+#爆炸的精灵组
 enemy1_down_group = pygame.sprite.Group()
+
+#把爆炸图片放到列表中
 enemy1_down_surface = []
 enemy1_down_surface.append(bg1)
 enemy1_down_surface.append(bg2)
@@ -56,7 +60,7 @@ class Background(GameSprite):
 #1、随机x值 一定要有最大值 随机数
 #2、初始化速度  随机1-?
 #3、初始化y的位置
-
+#敌人精灵
 class Enemy(GameSprite):
 	def __init__(self):
 		image_name = "./images/enemy-1.gif"
